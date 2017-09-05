@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MdProgressBarModule } from '@angular/material';
 
 import { AppRoutingModule }    from './app-routing.module';
 import { AuthGuard } from './auth.guard';
@@ -34,6 +35,7 @@ import { UserIndexComponent } from './user-index/user-index.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MdProgressBarModule,
   ],
   providers: [
     {
