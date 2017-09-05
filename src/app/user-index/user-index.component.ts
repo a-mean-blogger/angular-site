@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { User } from '../user';
-
-import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-index',
@@ -13,13 +12,9 @@ export class UserIndexComponent implements OnInit {
   users: User[];
 
   constructor(
-    private userService: UserService,
+    private route: ActivatedRoute,
   ) {
-    this.userService.index()
-    .then(users =>
-      this.users = users
-    )
-    .catch(response => null);
+    this.users = this.route.snapshot.data['users'];
   }
 
   ngOnInit() {
