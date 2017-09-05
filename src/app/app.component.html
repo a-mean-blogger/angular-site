@@ -18,14 +18,14 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li [routerLinkActive]="['active']">
+            <li *ngIf="!authService.isLoggedIn()" [routerLinkActive]="['active']">
               <a [routerLink]="['/','login']">Login</a>
             </li>
-            <li [routerLinkActive]="['active']">
+            <li *ngIf="!authService.isLoggedIn()" [routerLinkActive]="['active']">
               <a [routerLink]="['/','users','new']">Sign Up</a>
             </li>
-            <li>
-              <a>Logout</a>
+            <li *ngIf="authService.isLoggedIn()">
+              <a (click)="authService.logout()">Logout</a>
             </li>
           </ul>
         </div>
