@@ -1,0 +1,15 @@
+<div class="page page-users">
+
+  <div class="contentBox">
+    <h3 class="contentBoxTop">Users</h3>
+    <ul>
+      <ng-container *ngIf="users == null || users.length == 0">
+        <div class="noData" colspan=100> There is no user yet.</div>
+      </ng-container>
+        <li *ngFor="let user of users">
+          <a [routerLink]="['/','users',user.username]">{{user.username}}</a>
+        </li>
+    </ul>
+  </div>
+
+</div>
