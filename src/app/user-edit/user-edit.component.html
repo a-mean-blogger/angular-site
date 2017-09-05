@@ -1,0 +1,74 @@
+<div class="page page-users">
+
+  <div class="buttons">
+    <a [routerLink]="['/','users',user.username]" class="btn btn-default">Back</a>
+    <span *ngIf="authService.isLoggedIn() && authService.getCurrentUser()._id == user._id"
+      (click)="delete()"
+      class="btn btn-default delete">Delete</span>
+  </div>
+
+  <form class="user-form form-horizontal"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    class="login-form form-horizontal"
+  >
+    <div class="contentBox">
+      <h3 class="contentBoxTop">Edit User</h3>
+      <fieldset>
+        <div class="form-group" [ngClass]="{'has-error': formErrors.currentPassword}">
+          <label for="currentPassword" class="col-sm-12 control-label">Current Password*</label>
+          <div class="col-sm-9 col-sm-offset-3">
+            <input class="form-control" type="password" formControlName="currentPassword" id="currentPassword">
+            <span *ngIf="formErrors.currentPassword" class="help-block">{{formErrors.currentPassword}}</span>
+          </div>
+        </div>
+        <hr/>
+        <div class="form-group" [ngClass]="{'has-error': formErrors.username}">
+          <label for="username" class="col-sm-3 control-label">Username*</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="username" id="username">
+            <span *ngIf="formErrors.username" class="help-block">{{formErrors.username}}</span>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': formErrors.name}">
+          <label for="name" class="col-sm-3 control-label">Name*</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="name" id="name">
+            <span *ngIf="formErrors.name" class="help-block">{{formErrors.name}}</span>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': formErrors.email}">
+          <label for="email" class="col-sm-3 control-label">Email</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="email" id="email">
+            <span *ngIf="formErrors.email" class="help-block">{{formErrors.email}}</span>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': formErrors.newPassword}">
+          <label for="newPassword" class="col-sm-12 control-label">New Password</label>
+          <div class="col-sm-9 col-sm-offset-3">
+            <input class="form-control" type="password" formControlName="newPassword" id="newPassword">
+            <span *ngIf="formErrors.newPassword" class="help-block">{{formErrors.newPassword}}</span>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': formErrors.passwordConfirmation}">
+          <label for="passwordConfirmation" class="col-sm-12 control-label">Password Confirmation</label>
+          <div class="col-sm-9 col-sm-offset-3">
+            <input class="form-control" type="password" formControlName="passwordConfirmation" id="passwordConfirmation">
+            <span *ngIf="formErrors.passwordConfirmation" class="help-block">{{formErrors.passwordConfirmation}}</span>
+          </div>
+        </div>
+        <p>
+          <small>*Required</small>
+        </p>
+      </fieldset>
+      <div *ngIf="errorResponse?.message" class="alert alert-danger">
+        {{errorResponse?.message}}
+      </div>
+    </div>
+    <div class="buttons">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </form>
+
+</div>
