@@ -1,0 +1,60 @@
+<div class="page page-users">
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    class="login-form form-horizontal"
+  >
+    <div class="contentBox">
+      <h3 class="contentBoxTop">New User</h3>
+
+      <fieldset>
+        <div class="form-group" [ngClass]="{'has-error': formErrors.username}">
+          <label for="username" class="col-sm-3 control-label">Username*</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="username" id="username">
+            <span *ngIf="formErrors.username" class="help-block">{{formErrors.username}}</span>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': formErrors.name}">
+          <label for="name" class="col-sm-3 control-label">Name*</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="name" id="name">
+            <span *ngIf="formErrors.name" class="help-block">{{formErrors.name}}</span>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': formErrors.email}">
+          <label for="email" class="col-sm-3 control-label">Email</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="email" id="email">
+            <span *ngIf="formErrors.email" class="help-block">{{formErrors.email}}</span>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': formErrors.password}">
+          <label for="password" class="col-sm-3 control-label">Password*</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="password" formControlName="password" id="password">
+            <span *ngIf="formErrors.password" class="help-block">{{formErrors.password}}</span>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': formErrors.passwordConfirmation}">
+          <label for="passwordConfirmation" class="col-sm-12 control-label">Password Confirmation*</label>
+          <div class="col-sm-9 col-sm-offset-3">
+            <input class="form-control" type="password" formControlName="passwordConfirmation" id="passwordConfirmation">
+            <span *ngIf="formErrors.passwordConfirmation" class="help-block">{{formErrors.passwordConfirmation}}</span>
+          </div>
+        </div>
+        <p>
+          <small>*Required</small>
+        </p>
+        <div *ngIf="errorResponse?.message" class="alert alert-danger">
+          {{errorResponse?.message}}
+        </div>
+      </fieldset>
+    </div>
+    <div class="buttons">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </form>
+
+</div>

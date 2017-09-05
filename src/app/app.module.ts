@@ -8,11 +8,13 @@ import { AppRoutingModule }    from './app-routing.module';
 import { UtilService } from './util.service';
 import { AuthService } from './auth.service';
 import { RequestInterceptor } from './request-interceptor.service';
+import { UserService } from './user.service';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { Error404Component } from './error404/error404.component';
 import { LoginComponent } from './login/login.component';
+import { UserNewComponent } from './user-new/user-new.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { LoginComponent } from './login/login.component';
     WelcomeComponent,
     Error404Component,
     LoginComponent,
+    UserNewComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { LoginComponent } from './login/login.component';
     },
     UtilService,
     AuthService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })
