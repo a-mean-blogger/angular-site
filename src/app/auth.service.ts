@@ -2,6 +2,7 @@ import { environment } from '../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -14,6 +15,7 @@ export class AuthService {
   private apiBaseUrl = `${environment.apiBaseUrl}/auth`;
 
   constructor(
+    private localStorage: LocalStorageService,
     private http: HttpClient,
     private router: Router,
     private utilService: UtilService,
@@ -24,7 +26,7 @@ export class AuthService {
               .toPromise()
               .then(this.utilService.checkSuccess)
               .then(response => {
-    		        localStorage.setItem('token', response.data);
+                this.localStorage.set('token', response.data);
               })
               .catch(this.utilService.handleApiError);
   }
@@ -34,7 +36,7 @@ export class AuthService {
               .toPromise()
               .then(this.utilService.checkSuccess)
               .then(response => {
-    		        localStorage.setItem('currentUser', JSON.stringify(response.data));
+                this.localStorage.set('currentUser', response.data);
                 return response.data as User
               })
               .catch(response =>{
@@ -48,7 +50,7 @@ export class AuthService {
               .toPromise()
               .then(this.utilService.checkSuccess)
               .then(response => {
-                localStorage.setItem('token', response.data);
+                this.localStorage.set('token', response.data);
                 if(!this.getCurrentUser()) return this.me();
               })
               .catch(response =>{
@@ -58,22 +60,22 @@ export class AuthService {
   }
 
   getToken(): string{
-    return localStorage.getItem('token');
+    return this.localStorage.get<string>('token');
   }
 
   getCurrentUser(): User{
-    return JSON.parse(localStorage.getItem('currentUser')) as User;
+    return this.localStorage.get<User>('currentUser');
   }
 
   isLoggedIn(): boolean {
-    var token = localStorage.getItem('token');
+    var token = this.localStorage.get<string>('token');
     if(token) return true;
     else return false;
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('currentUser');
+    this.localStorage.remove('token');
+    this.localStorage.remove('currentUser');
     this.router.navigate(['/']);
   }
 }
