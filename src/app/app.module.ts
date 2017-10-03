@@ -36,7 +36,7 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     UserEditComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'my-app-id'}),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
